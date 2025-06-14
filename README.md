@@ -45,6 +45,10 @@ npm run dev
 npm run build
 ```
 
+## Deployment Status
+
+This portfolio is automatically deployed using GitHub Actions. The latest deployment status can be found in the [Actions](https://github.com/Nikhileshgawhale/portfolio_nikhilesh_full/actions) tab.
+
 ## License
 
 MIT License 
