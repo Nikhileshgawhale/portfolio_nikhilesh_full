@@ -6,7 +6,7 @@ export default function CV() {
       <h2 className="text-3xl md:text-4xl font-bold mb-6 text-indigo-600">My Resume</h2>
       <p className="mb-6">Download or view my latest CV below.</p>
       <a
-        href="/CV.pdf"
+        href="/portfolio_nikhilesh_full/documents/resume.pdf"
         download
         className="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition"
       >
@@ -14,7 +14,7 @@ export default function CV() {
       </a>
       <div className="mt-10 flex justify-center">
         <iframe
-          src="/CV.pdf"
+          src="/portfolio_nikhilesh_full/documents/resume.pdf"
           width="80%"
           height="600px"
           className="border rounded-lg shadow-md"

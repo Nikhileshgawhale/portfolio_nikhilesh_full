@@ -31,7 +31,7 @@ const About = () => {
           >
             <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-1 transform transition-transform duration-300 group-hover:scale-105">
               <motion.img
-                src="/profile.jpg"
+                src="/portfolio_nikhilesh_full/profile.jpg"
                 alt="Nikhilesh Gawhale"
                 className="w-full h-full object-cover rounded-2xl"
                 whileHover={{ scale: 1.05 }}
