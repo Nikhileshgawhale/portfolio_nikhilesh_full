@@ -1,135 +1,145 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
+import SectionHeading from "./SectionHeading";
 
 const timelineData = [
   {
-    year: "2025",
-    title: "LLM & Multimodal AI Engineer",
-    company: "Outlier",
-    description: "Developing and fine-tuning Large Language Models (LLMs) with multimodal capabilities, integrating text, images, audio, and video. Focused on optimizing model performance and enhancing cross-modal understanding.",
+    period: "Jan 2025 – Apr 2026",
+    title: "AI / Backend Engineer",
+    company: "RP-Tech International Solutions",
+    location: "Remote · Investment Banking Technology",
+    description:
+      "Shipped production AI products powered by Anthropic Claude — a contract-review platform with agentic workflows, document intelligence and human-in-the-loop oversight. Owned features end-to-end from design through deployment, monitoring and iteration.",
   },
   {
-    year: "2024",
-    title: "Generative AI Intern",
+    period: "Aug 2024 – Dec 2024",
+    title: "Generative AI / Backend Engineer",
     company: "Midas Advisory",
-    description: "Enhanced LLM performance by 25% through fine-tuning and prompt engineering. Developed AI pipeline processing 10,000+ financial records daily, improved retrieval accuracy with Milvus, and integrated Kubernetes for scalability.",
+    location: "London, UK",
+    description:
+      "Built Python/FastAPI backend services and REST APIs powering production LLM features — RAG pipelines, retrieval and grounded answering — with PostgreSQL data modelling, Docker deployment and GitHub Actions CI/CD.",
   },
   {
-    year: "2023",
+    period: "Aug 2022 – Sep 2023",
     title: "Software Developer",
-    company: "GLOBAL Technologies",
-    description: "Built ML-powered debt automation system improving response rates by 40%. Developed test automation with predictive analytics reducing defect rate by 50%. Integrated ML into mobile QA workflows boosting efficiency by 45%.",
+    company: "Global Technologies",
+    location: "Pune, India",
+    description:
+      "Delivered production-grade Python backend services with REST API integrations and a PostgreSQL data layer. Designed predictive monitoring and anomaly-detection pipelines, improving operational reliability by 45%.",
   },
+];
+
+const education = [
+  {
+    degree: "MSc Artificial Intelligence",
+    school: "Queen Mary University of London, UK",
+    detail: "Distinction · Sep 2023 – Sep 2024",
+    note: "Deep Learning (90%), ML Algorithms (89%), Bayesian Neural Networks (88%), NLP (85%)",
+  },
+  {
+    degree: "BCA — Bachelor of Computer Applications",
+    school: "Shivaji Science College, Amravati, India",
+    detail: "GPA 7.8/10 · Aug 2019 – Aug 2022",
+    note: "Computer applications & software development foundations",
+  },
+];
+
+const certifications = [
+  { name: "Complete Data Structures & Algorithms", org: "Udemy", date: "Mar 2025" },
+  { name: "Pretraining LLMs", org: "DeepLearning.AI", date: "Jan 2025" },
 ];
 
 const Timeline = () => {
   return (
-    <section id="timeline" className="py-20">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-            Professional Journey
-          </h2>
-          <p className="text-gray-300 text-lg">
-            My path in artificial intelligence and machine learning
-          </p>
-        </motion.div>
+    <section id="timeline" className="py-24 md:py-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <SectionHeading
+          index="04 — Journey"
+          title="Experience & education"
+          subtitle="My path in artificial intelligence and machine learning"
+        />
 
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-purple-500" />
+        <div className="relative max-w-3xl">
+          <div className="absolute left-[7px] md:left-1/2 md:-translate-x-px top-0 bottom-0 w-px bg-gradient-to-b from-accent via-white/10 to-mint" />
 
-          {/* Timeline Items */}
           <div className="space-y-12">
             {timelineData.map((item, index) => (
               <motion.div
-                key={item.year}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                key={item.period + item.company}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -24 : 24 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-                }`}
+                className="relative pl-10 md:pl-0 md:grid md:grid-cols-2 md:gap-12"
               >
-                {/* Content */}
-                <div className={`w-1/2 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12'}`}>
-                  <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl hover:bg-gray-800/70 transition-all">
-                    <span className="text-blue-400 font-semibold">{item.year}</span>
-                    <h3 className="text-xl font-bold text-white mt-2">{item.title}</h3>
-                    <p className="text-purple-400 mb-2">{item.company}</p>
-                    <p className="text-gray-300">{item.description}</p>
-                  </div>
+                <div
+                  className={`md:text-right ${
+                    index % 2 === 0 ? "md:col-start-1" : "md:col-start-2 md:text-left"
+                  }`}
+                >
+                  <span className="font-mono text-sm text-accent">{item.period}</span>
+                  <h3 className="font-display text-xl font-bold text-white mt-1">
+                    {item.title}
+                  </h3>
+                  <p className="text-mint text-sm font-medium">{item.company}</p>
+                  <p className="text-muted/80 text-xs mt-1">{item.location}</p>
+                  <p className="text-muted text-sm mt-3 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
 
-                {/* Timeline Dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
-
-                {/* Empty Space */}
-                <div className="w-1/2" />
+                <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 top-1 w-4 h-4 rounded-full bg-surface border-2 border-accent" />
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Education Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-20 text-center"
-        >
-          <h3 className="text-2xl font-semibold mb-8 text-blue-400">Education</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl hover:bg-gray-800/70 transition-all">
-              <h4 className="text-xl font-bold text-white mb-2">Master's in Artificial Intelligence</h4>
-              <p className="text-purple-400 mb-2">Queen Mary University of London</p>
-              <p className="text-gray-300">Grade: Distinction</p>
-              <p className="text-blue-400 mt-2">2023 - 2024</p>
-              <p className="text-gray-300 mt-2 text-sm">Dissertation: Exploring the Relationship Between Temperature and Creativity in Large Language Models</p>
-            </div>
-            <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl hover:bg-gray-800/70 transition-all">
-              <h4 className="text-xl font-bold text-white mb-2">Bachelor's in Computer Science</h4>
-              <p className="text-purple-400 mb-2">Shri Shivaji Science College</p>
-              <p className="text-gray-300">GPA: 7.8/10.0</p>
-              <p className="text-blue-400 mt-2">2019 - 2022</p>
-              <p className="text-gray-300 mt-2 text-sm">Conducted ML workshops and developed AI-driven automation solutions</p>
-            </div>
-          </div>
-        </motion.div>
+        <div className="mt-24 grid md:grid-cols-2 gap-6">
+          {education.map((item, i) => (
+            <motion.div
+              key={item.degree}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="panel p-6 lg:p-8"
+            >
+              <span className="font-mono text-xs text-accent tracking-widest uppercase">
+                Education
+              </span>
+              <h4 className="font-display text-xl font-bold text-white mt-3">
+                {item.degree}
+              </h4>
+              <p className="text-mint text-sm mt-1">{item.school}</p>
+              <p className="text-muted text-sm mt-2">{item.detail}</p>
+              <p className="text-muted/80 text-xs mt-3">{item.note}</p>
+            </motion.div>
+          ))}
+        </div>
 
-        {/* Certifications Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-20 text-center"
-        >
-          <h3 className="text-2xl font-semibold mb-8 text-blue-400">Certifications</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl hover:bg-gray-800/70 transition-all">
-              <h4 className="text-xl font-bold text-white mb-2">The Complete Data Structures and Algorithms Course</h4>
-              <p className="text-purple-400 mb-2">Udemy</p>
-              <p className="text-blue-400">Issued March 2025</p>
-            </div>
-            <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl hover:bg-gray-800/70 transition-all">
-              <h4 className="text-xl font-bold text-white mb-2">Pretraining LLMs</h4>
-              <p className="text-purple-400 mb-2">DeepLearning.AI</p>
-              <p className="text-blue-400">Issued January 2025</p>
-            </div>
-          </div>
-        </motion.div>
+        <div className="mt-6 grid md:grid-cols-2 gap-6">
+          {certifications.map((cert, i) => (
+            <motion.div
+              key={cert.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="panel p-6 border-dashed"
+            >
+              <span className="font-mono text-xs text-muted tracking-widest uppercase">
+                Certification
+              </span>
+              <h4 className="font-semibold text-white mt-3">{cert.name}</h4>
+              <p className="text-sm text-muted mt-1">
+                {cert.org} · {cert.date}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
 };
 
-export default Timeline; 
+export default Timeline;

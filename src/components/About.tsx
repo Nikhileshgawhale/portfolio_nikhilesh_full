@@ -1,104 +1,84 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
+import SectionHeading from "./SectionHeading";
+
+const highlights = [
+  "FastAPI & Python",
+  "Anthropic Claude",
+  "Agentic Workflows",
+  "PostgreSQL",
+  "Docker & Kubernetes",
+  "RAG & LLM Systems",
+];
 
 const About = () => {
   return (
-    <section id="about" className="py-20">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-            About Me
-          </h2>
-          <p className="text-gray-300 text-lg">
-            AI Engineer specializing in Large Language Models and Multimodal AI
-          </p>
-        </motion.div>
+    <section id="about" className="py-24 md:py-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <SectionHeading
+          index="01 — About"
+          title="Engineering intelligence at scale"
+          subtitle="Backend engineer shipping production AI features with Python, FastAPI, and Claude"
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          {/* Left Column - Image */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="relative group"
+            className="lg:col-span-5 relative"
           >
-            <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-1 transform transition-transform duration-300 group-hover:scale-105">
-              <motion.img
-                src="/portfolio_nikhilesh_full/profile.jpg"
-                alt="Nikhilesh Gawhale"
-                className="w-full h-full object-cover rounded-2xl"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              />
+            <div className="aspect-[4/5] panel overflow-hidden relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-mint/10" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
+                <span className="font-display text-[8rem] md:text-[10rem] font-bold text-white/[0.06] leading-none select-none">
+                  NG
+                </span>
+                <p className="absolute bottom-8 left-8 right-8">
+                  <span className="font-mono text-xs text-accent tracking-widest uppercase">Profile</span>
+                  <span className="block mt-2 text-lg font-semibold">Nikhilesh Gawhale</span>
+                  <span className="block text-sm text-muted">London, UK · Remote-first</span>
+                </p>
+              </div>
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-mint scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
             </div>
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-300" />
-            <div className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-300" />
           </motion.div>
 
-          {/* Right Column - Content */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="lg:col-span-7 space-y-6"
           >
-            <p className="text-gray-300 leading-relaxed">
-              I am an AI Engineer with a Master's degree in Artificial Intelligence from Queen Mary University of London, where I graduated with Distinction. My expertise lies in developing and fine-tuning Large Language Models (LLMs) with multimodal capabilities, integrating text, images, audio, and video for diverse applications.
-            </p>
-            
-            <p className="text-gray-300 leading-relaxed">
-              Currently working as an LLM & Multimodal AI Engineer at Outlier, I focus on optimizing model performance and enhancing cross-modal understanding. My research interests include exploring the relationship between temperature and creativity in LLMs, as demonstrated in my master's dissertation.
-            </p>
-
-            <p className="text-gray-300 leading-relaxed">
-              With experience at companies like Midas Advisory and GLOBAL Technologies, I've successfully enhanced LLM performance by 25% through fine-tuning and prompt engineering, developed AI pipelines processing 10,000+ financial records daily, and built ML-powered automation systems improving response rates by 40%.
+            <p className="text-lg text-muted leading-relaxed">
+              Backend engineer who ships production AI features end-to-end — using
+              Claude and other AI tools as a daily co-pilot while owning the quality
+              and review of every line that goes out. MSc Artificial Intelligence
+              (Distinction) from Queen Mary University of London.
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <motion.span
-                whileHover={{ scale: 1.05 }}
-                className="px-4 py-2 bg-gray-800/50 rounded-full text-blue-400 text-sm hover:bg-gray-800/70 transition-all"
-              >
-                LLM Development
-              </motion.span>
-              <motion.span
-                whileHover={{ scale: 1.05 }}
-                className="px-4 py-2 bg-gray-800/50 rounded-full text-blue-400 text-sm hover:bg-gray-800/70 transition-all"
-              >
-                Multimodal AI
-              </motion.span>
-              <motion.span
-                whileHover={{ scale: 1.05 }}
-                className="px-4 py-2 bg-gray-800/50 rounded-full text-blue-400 text-sm hover:bg-gray-800/70 transition-all"
-              >
-                MLOps
-              </motion.span>
-              <motion.span
-                whileHover={{ scale: 1.05 }}
-                className="px-4 py-2 bg-gray-800/50 rounded-full text-blue-400 text-sm hover:bg-gray-800/70 transition-all"
-              >
-                Deep Learning
-              </motion.span>
-              <motion.span
-                whileHover={{ scale: 1.05 }}
-                className="px-4 py-2 bg-gray-800/50 rounded-full text-blue-400 text-sm hover:bg-gray-800/70 transition-all"
-              >
-                NLP
-              </motion.span>
-              <motion.span
-                whileHover={{ scale: 1.05 }}
-                className="px-4 py-2 bg-gray-800/50 rounded-full text-blue-400 text-sm hover:bg-gray-800/70 transition-all"
-              >
-                Computer Vision
-              </motion.span>
+            <p className="text-muted leading-relaxed">
+              Currently at RP-Tech International Solutions, I shipped real AI products
+              powered by Anthropic Claude into production — a contract-review platform
+              with agentic workflows, document intelligence and human-in-the-loop
+              oversight — owning features from design through deployment and monitoring.
+            </p>
+
+            <p className="text-muted leading-relaxed">
+              At Midas Advisory I built FastAPI backend services powering production
+              LLM features with RAG pipelines. At Global Technologies I delivered
+              Python backend services and predictive monitoring pipelines that improved
+              operational reliability by 45%.
+            </p>
+
+            <div className="flex flex-wrap gap-2 pt-4">
+              {highlights.map((item) => (
+                <span key={item} className="tag">
+                  {item}
+                </span>
+              ))}
             </div>
 
             <div className="pt-6">
@@ -106,12 +86,12 @@ const About = () => {
                 href="https://linkedin.com/in/nikhilesh-gawhale"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg text-white font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="btn-ghost"
               >
-                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
                 Connect on LinkedIn
               </motion.a>

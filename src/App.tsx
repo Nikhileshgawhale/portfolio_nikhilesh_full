@@ -1,33 +1,30 @@
 import React from "react";
-import { motion } from "framer-motion";
+import BackgroundEffects from "./components/BackgroundEffects";
+import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Projects from "./components/Projects";
 import Skills from "./components/Skills";
+import Projects from "./components/Projects";
 import Timeline from "./components/Timeline";
-import Contact from "./components/Contact";
-import Navbar from "./components/Navbar";
 import Documents from "./components/Documents";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-black min-h-screen text-white">
+    <div className="relative min-h-screen text-white overflow-x-hidden">
+      <BackgroundEffects />
       <Navbar />
-      <main className="container mx-auto px-4 py-8">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Timeline />
-          <Documents />
-          <Contact />
-        </motion.div>
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Timeline />
+        <Documents />
+        <Contact />
       </main>
+      <Footer />
     </div>
   );
 }
