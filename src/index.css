@@ -192,3 +192,15 @@ body {
 }
 .start-btn:hover { letter-spacing: 0.5em; }
 @keyframes breathe { 50% { opacity: 0.55; } }
+
+/* ---------- blog ---------- */
+
+.prose-body {
+  @apply text-[17px] leading-[1.8] text-white/75;
+}
+.inline-code {
+  @apply font-mono text-[0.85em] px-1.5 py-0.5 rounded bg-white/[0.06] text-mint;
+}
+.code-block {
+  @apply my-6 p-5 rounded-xl overflow-x-auto bg-[#07110f] border border-mint/15 font-mono text-[13px] leading-relaxed text-[#c9f5e8];
+}

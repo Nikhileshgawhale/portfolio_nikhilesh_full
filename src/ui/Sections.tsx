@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { education, experience, profile, projects, skillGroups, stats } from "../data/profile";
 import { downloadResume, viewResume } from "../utils/assets";
+import { BlogContent } from "./Blog";
 
 const ArrowIcon = () => (
   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
@@ -204,6 +205,7 @@ export const sectionContent = {
   about: { title: "Hi, I'm Nikhilesh.", Component: AboutContent },
   experience: { title: "Where I've built", Component: ExperienceContent },
   projects: { title: "Selected work", Component: ProjectsContent },
+  blog: { title: "Notes from the papers", Component: BlogContent },
   skills: { title: "What I work with", Component: SkillsContent },
   contact: { title: "Let's talk", Component: ContactContent },
 } as const;

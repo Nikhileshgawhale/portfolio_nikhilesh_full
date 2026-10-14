@@ -52,6 +52,7 @@ export default function Scene({ view, onSelect, panelOpen, onReady }: SceneProps
       <Workstation view={view} onSelect={onSelect} />
       <ServerRacks view={view} onSelect={onSelect} />
       <Terminal view={view} onSelect={onSelect} />
+      <Bookshelf view={view} onSelect={onSelect} />
 
       <Sparkles count={80} scale={[14, 6, 12]} position={[0, 3, 0]} size={2.5} speed={0.3} color="#00e5a0" opacity={0.6} />
       <Sparkles count={40} scale={[14, 6, 12]} position={[0, 3, 0]} size={2} speed={0.2} color="#ff7a3d" opacity={0.5} />
@@ -629,6 +630,95 @@ function Terminal(props: StationProps) {
               <meshBasicMaterial color={i === 1 ? [2, 0.6, 0.2] : [0.4, 1.8, 1.3]} toneMapped={false} />
             </mesh>
           ))}
+        </group>
+      )}
+    </Hotspot>
+  );
+}
+
+/* ---------- blog: bookshelf ---------- */
+
+const SPINE_COLORS: [number, number, number][] = [
+  [1.8, 0.5, 0.12],
+  [0.3, 1.6, 1.1],
+  [0.55, 0.4, 1.6],
+  [1.4, 1.1, 0.35],
+  [0.3, 1.0, 1.7],
+];
+
+function Bookshelf(props: StationProps) {
+  const books = useMemo(() => {
+    const list: { x: number; y: number; w: number; h: number; tilt: number; color: [number, number, number]; glow: boolean }[] = [];
+    let seed = 7;
+    const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+    [0.32, 0.82, 1.32].forEach((shelfY, row) => {
+      let x = -0.62;
+      while (x < 0.56) {
+        const w = 0.06 + rand() * 0.05;
+        const h = 0.3 + rand() * 0.12;
+        const glow = row === 1 && list.filter((b) => b.glow).length < 5 && rand() > 0.45;
+        list.push({ x: x + w / 2, y: shelfY + h / 2, w, h, tilt: rand() > 0.9 ? 0.18 : 0, color: SPINE_COLORS[list.length % 5], glow });
+        x += w + 0.012;
+      }
+    });
+    return list;
+  }, []);
+  const holo = useRef<THREE.Group>(null!);
+  useFrame((state) => {
+    holo.current.rotation.y = state.clock.elapsedTime * 0.6;
+    holo.current.position.y = 2.15 + Math.sin(state.clock.elapsedTime * 1.4) * 0.05;
+  });
+
+  return (
+    <Hotspot {...props} id="blog" label="Blog" labelPosition={[-4.9, 2.6, 2.1]}>
+      {(hovered) => (
+        <group position={[-4.9, 0, 2.1]} rotation-y={1.0}>
+          {/* frame */}
+          {[-0.7, 0.7].map((x) => (
+            <mesh key={x} position={[x, 0.9, 0]}>
+              <boxGeometry args={[0.05, 1.8, 0.4]} />
+              <meshStandardMaterial color="#15151e" metalness={0.6} roughness={0.4} />
+            </mesh>
+          ))}
+          {[0.3, 0.8, 1.3, 1.8].map((y) => (
+            <mesh key={y} position={[0, y, 0]}>
+              <boxGeometry args={[1.45, 0.035, 0.4]} />
+              <meshStandardMaterial color="#1a1a24" metalness={0.5} roughness={0.45} />
+            </mesh>
+          ))}
+          <mesh position={[0, 1.82, 0.2]}>
+            <boxGeometry args={[1.45, 0.02, 0.02]} />
+            <meshBasicMaterial color={hovered ? [0.8, 0.6, 3] : [0.45, 0.35, 1.6]} toneMapped={false} />
+          </mesh>
+          {/* books */}
+          {books.map((b, i) => (
+            <mesh key={i} position={[b.x, b.y, 0.02]} rotation-z={b.tilt}>
+              <boxGeometry args={[b.w, b.h, 0.28]} />
+              {b.glow ? (
+                <meshBasicMaterial color={b.color.map((c) => c * (hovered ? 1.6 : 1)) as [number, number, number]} toneMapped={false} />
+              ) : (
+                <meshStandardMaterial color={new THREE.Color(...b.color).multiplyScalar(0.18)} roughness={0.7} />
+              )}
+            </mesh>
+          ))}
+          {/* floating hologram "paper" */}
+          <group ref={holo} position={[0, 2.15, 0]}>
+            <mesh>
+              <planeGeometry args={[0.32, 0.42]} />
+              <meshBasicMaterial color={[0.3, 1.4, 1.0]} toneMapped={false} transparent opacity={0.35} side={THREE.DoubleSide} />
+            </mesh>
+            {[0.12, 0.06, 0, -0.06, -0.12].map((y, i) => (
+              <mesh key={y} position={[i === 0 ? -0.03 : 0, y, 0.002]}>
+                <planeGeometry args={[i === 0 ? 0.18 : 0.24, 0.018]} />
+                <meshBasicMaterial color={[0.6, 2.2, 1.6]} toneMapped={false} side={THREE.DoubleSide} />
+              </mesh>
+            ))}
+          </group>
+          {/* hit area */}
+          <mesh position={[0, 1.1, 0]}>
+            <boxGeometry args={[1.5, 2.2, 0.5]} />
+            <meshBasicMaterial transparent opacity={0} depthWrite={false} />
+          </mesh>
         </group>
       )}
     </Hotspot>
