@@ -21,7 +21,7 @@ type Mode = "lab" | "classic";
 const articleFromHash = () => window.location.hash.match(/^#blog\/([\w-]+)$/)?.[1] ?? null;
 
 export default function App() {
-  const initialMode: Mode = !hasWebGL || window.location.hash === "#classic" ? "classic" : "lab";
+  const initialMode: Mode = !hasWebGL || ["#classic", "#blog"].includes(window.location.hash) ? "classic" : "lab";
   const [mode, setMode] = useState<Mode>(initialMode);
   const [started, setStarted] = useState(false);
   const [sceneReady, setSceneReady] = useState(false);

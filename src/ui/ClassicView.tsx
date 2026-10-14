@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { sections } from "../scene/stations";
 import { sectionContent } from "./Sections";
@@ -6,6 +6,18 @@ import { profile, stats } from "../data/profile";
 import { downloadResume } from "../utils/assets";
 
 export default function ClassicView({ onEnterLab }: { onEnterLab?: () => void }) {
+  // Content renders after load, so jump to a #section link ourselves (e.g. #blog from the GitHub README).
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (!id || id === "classic") return;
+    window.history.scrollRestoration = "manual";
+    const t = setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: "instant" as ScrollBehavior });
+    }, 120);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <div className="min-h-screen bg-surface text-white bg-grid">
       <nav className="sticky top-0 z-30 bg-surface/80 backdrop-blur-xl border-b border-white/[0.06]">
