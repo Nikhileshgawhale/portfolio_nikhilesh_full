@@ -203,6 +203,13 @@ function Room() {
 function NeonSign(props: StationProps) {
   const nameMat = useRef<THREE.MeshBasicMaterial>(null!);
   const flicker = useRef(0);
+  // Size the neon frame from the rendered text so the name always sits inside it.
+  const [textWidth, setTextWidth] = useState({ name: 8.6, sub: 6 });
+  const measure = (key: "name" | "sub") => (mesh: any) => {
+    const b = mesh?.textRenderInfo?.blockBounds;
+    if (b) setTextWidth((w) => (Math.abs(w[key] - (b[2] - b[0])) > 0.01 ? { ...w, [key]: b[2] - b[0] } : w));
+  };
+  const frameWidth = Math.max(textWidth.name, textWidth.sub) + 1.2;
   useFrame((state) => {
     if (flicker.current > 0) flicker.current -= 1;
     else if (Math.random() < 0.004) flicker.current = 6 + Math.floor(Math.random() * 8);
@@ -213,19 +220,19 @@ function NeonSign(props: StationProps) {
   });
 
   return (
-    <Hotspot {...props} id="about" label="About me" labelPosition={[0, 5.3, -5.8]}>
+    <Hotspot {...props} id="about" label="About me" labelPosition={[0, 5.55, -5.8]}>
       {(hovered) => (
         <group position={[0, 0, -5.9]}>
-          <Text font={DISPLAY_FONT} fontSize={1.05} letterSpacing={0.06} position={[0, 4.05, 0]} anchorX="center" anchorY="middle">
+          <Text font={DISPLAY_FONT} fontSize={0.95} letterSpacing={0.06} position={[0, 4.05, 0]} anchorX="center" anchorY="middle" onSync={measure("name")}>
             NIKHILESH
             <meshBasicMaterial ref={nameMat} toneMapped={false} />
           </Text>
-          <Text font={MONO_FONT} fontSize={0.26} letterSpacing={0.32} position={[0, 3.05, 0]} anchorX="center" anchorY="middle">
+          <Text font={MONO_FONT} fontSize={0.26} letterSpacing={0.32} position={[0, 3.05, 0]} anchorX="center" anchorY="middle" onSync={measure("sub")}>
             AI ENGINEER · GENERATIVE AI
             <meshBasicMaterial color={[MINT.r * 2, MINT.g * 2, MINT.b * 2]} toneMapped={false} />
           </Text>
           {/* neon frame */}
-          <NeonFrame width={7.4} height={2.6} y={3.65} intensity={hovered ? 3 : 1.6} />
+          <NeonFrame width={frameWidth} height={2.6} y={3.65} intensity={hovered ? 3 : 1.6} />
         </group>
       )}
     </Hotspot>
