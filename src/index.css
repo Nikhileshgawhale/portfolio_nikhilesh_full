@@ -123,3 +123,72 @@ body {
   display: flex;
   width: max-content;
 }
+
+/* ---------- 3D lab UI ---------- */
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+.glass-card {
+  @apply rounded-xl border border-white/[0.08] bg-white/[0.03];
+}
+
+.chip {
+  @apply px-2.5 py-1 rounded-full text-[11px] font-mono border border-white/10 bg-white/[0.03] text-white/70;
+}
+.chip--lg {
+  @apply text-xs px-3 py-1.5 transition-colors hover:border-mint/50 hover:text-white;
+}
+
+.hud-btn {
+  @apply inline-flex items-center gap-1 px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider
+    bg-black/40 backdrop-blur-xl border border-white/10 text-white/80 transition-colors
+    hover:border-accent hover:text-white;
+}
+
+.nav-pill {
+  @apply px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-white/60 whitespace-nowrap transition-all hover:text-white;
+}
+.nav-pill--on {
+  @apply bg-accent text-white shadow-[0_0_24px_rgba(255,77,0,0.5)];
+}
+
+.panel-shell {
+  @apply fixed z-40 flex flex-col bg-[#0a0a10]/85 backdrop-blur-2xl border border-white/10 shadow-2xl
+    inset-x-2 bottom-2 top-[22vh] rounded-2xl
+    lg:inset-x-auto lg:right-5 lg:top-5 lg:bottom-5 lg:w-[min(44vw,600px)];
+}
+
+.panel-scroll { scrollbar-width: thin; scrollbar-color: rgba(255, 77, 0, 0.4) transparent; }
+
+.hotspot {
+  @apply flex items-center gap-2 px-3 py-1.5 rounded-full whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.2em]
+    bg-black/50 backdrop-blur-md border border-white/15 text-white/80 transition-all duration-300 cursor-pointer;
+}
+.hotspot--on {
+  @apply border-accent text-white bg-accent/20 scale-110;
+}
+.hotspot-dot {
+  @apply relative w-1.5 h-1.5 rounded-full bg-mint;
+  box-shadow: 0 0 8px #00e5a0;
+}
+.hotspot-dot::after {
+  content: "";
+  @apply absolute inset-0 rounded-full bg-mint;
+  animation: ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes ping { 75%, 100% { transform: scale(3); opacity: 0; } }
+
+.start-btn {
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 1.75rem;
+  letter-spacing: 0.35em;
+  padding: 0.5rem 0 0.5rem 0.35em;
+  color: white;
+  text-shadow: 0 0 18px rgba(255, 77, 0, 0.9), 0 0 42px rgba(255, 77, 0, 0.5);
+  animation: breathe 2.4s ease-in-out infinite;
+  transition: letter-spacing 0.4s ease;
+}
+.start-btn:hover { letter-spacing: 0.5em; }
+@keyframes breathe { 50% { opacity: 0.55; } }
