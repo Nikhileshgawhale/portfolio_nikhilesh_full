@@ -114,7 +114,7 @@ export function ArticleView({ slug, onClose }: { slug: string; onClose: () => vo
     if (post) document.title = `${post.title} | ${profile.name}`;
     return () => {
       window.removeEventListener("keydown", onKey);
-      document.title = `${profile.name} | GenAI / ML Engineer`;
+      document.title = `${profile.name} | AI Engineer`;
     };
   }, [slug, post, onClose]);
 

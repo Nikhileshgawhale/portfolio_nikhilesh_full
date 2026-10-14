@@ -51,7 +51,7 @@ export default function ClassicView({ onEnterLab }: { onEnterLab?: () => void })
         >
           {profile.name}
           <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent via-orange-300 to-mint">
-            GenAI / ML Engineer
+            AI Engineer
           </span>
         </motion.h1>
         <p className="mt-6 text-lg text-muted max-w-2xl leading-relaxed">{profile.summary}</p>

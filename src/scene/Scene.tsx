@@ -221,7 +221,7 @@ function NeonSign(props: StationProps) {
             <meshBasicMaterial ref={nameMat} toneMapped={false} />
           </Text>
           <Text font={MONO_FONT} fontSize={0.26} letterSpacing={0.32} position={[0, 3.05, 0]} anchorX="center" anchorY="middle">
-            GENERATIVE AI · ML ENGINEER
+            AI ENGINEER · GENERATIVE AI
             <meshBasicMaterial color={[MINT.r * 2, MINT.g * 2, MINT.b * 2]} toneMapped={false} />
           </Text>
           {/* neon frame */}

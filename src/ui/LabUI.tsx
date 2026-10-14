@@ -44,7 +44,7 @@ export function Intro({
             transition={{ delay: 0.4 }}
             className="font-mono text-[11px] tracking-[0.3em] uppercase text-accent/80 mt-2"
           >
-            GenAI · ML Engineer
+            AI Engineer · Generative AI
           </motion.p>
 
           <div className="h-28 flex items-center justify-center">

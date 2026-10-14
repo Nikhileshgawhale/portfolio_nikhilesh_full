@@ -29,7 +29,7 @@ export function AboutContent() {
         ))}
       </div>
       <p className="font-mono text-xs text-muted">
-        <span className="text-mint">●</span> {profile.location} · open to GenAI / ML roles
+        <span className="text-mint">●</span> {profile.location} · open to AI Engineer roles
       </p>
       <div className="flex flex-wrap gap-3">
         <button type="button" onClick={downloadResume} className="btn-accent text-sm">
@@ -164,7 +164,7 @@ export function ContactContent() {
   return (
     <div className="space-y-6">
       <p className="text-lg text-white/90 leading-relaxed">
-        Open to Generative AI and Machine Learning engineering roles — remote or on-site. If you are
+        Open to AI Engineer and Generative AI roles in London or remote. If you are
         building RAG, agents or fine-tuned models that need to work in production, let's talk.
       </p>
       <div className="glass-card p-5">
